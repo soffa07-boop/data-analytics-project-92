@@ -6,7 +6,7 @@ FROM customers;
 SELECT 
     e.first_name || ' ' || e.last_name AS seller,
     COUNT(s.sales_id) AS operations,
-    SUM(p.price * s.quantity) AS income
+    FLOOR(SUM(p.price * s.quantity)) AS income
 FROM sales s
 JOIN employees e ON s.sales_person_id = e.employee_id
 JOIN products p ON s.product_id = p.product_id
